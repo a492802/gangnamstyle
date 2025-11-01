@@ -1,2 +1,37 @@
 #include <iostream>
-//я все +\- 2 часа не делала commit'ы...
+
+int** convert(const int* t, size_t n, const size_t* lns, size_t rows)
+{
+    int** result = new int*[rows];
+    size_t index = 0;
+    for (size_t i = 0; i < rows; i++)
+    {
+        result[i] = new int[lns[i]];
+        for (size_t j = 0; j < lns[i]; j++)
+        {
+            if (index < n)
+            {
+                result[i][j] = t[index];
+                index++;
+            }
+        }
+    }
+    return result;
+}
+
+void A(int** table, size_t rows, const size_t* lns)
+{
+    for (size_t i = 0; i < rows; i++)
+    {
+        for (size_t j = 0; j < lns[i]; j++)
+        {
+            std::cout << table[i][j] << " ";
+        }
+        std::cout << std::endl;
+    }
+    for (size_t i = 0; i < rows; i++)
+    {
+        delete[] table[i];
+    }
+    delete[] table;
+}
